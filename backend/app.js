@@ -3,9 +3,13 @@ import productRoutes from "./src/routes/products.js";
 import branchesRoutes from "./src/routes/branches.js";
 import employeesRoutes from "./src/routes/employees.js";
 import customerRoutes from "./src/routes/customer.js"
+import resgisterCustomerRoutes from "./src/routes/registerCustomer.js"
+import registerEmployeesRoutes from "./src/routes/regusterEmployees.js";
+import cookieParser from "cookie-parser";
 
 //Creo una constante que guarde Express
 const app = express();
+app.use(cookieParser())
 
 //Que acepte los json desde postman
 app.use(express.json());
@@ -14,6 +18,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/branches", branchesRoutes);
 app.use("/api/employees", employeesRoutes);
 app.use("/api/customers", customerRoutes);
-app.use("/api/registerCustomer")
+app.use("/api/registerCustomer", resgisterCustomerRoutes)
+app.use("/api/registerEmployee", registerEmployeesRoutes)
 
 export default app;
