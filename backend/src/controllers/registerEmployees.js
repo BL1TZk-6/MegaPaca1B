@@ -40,7 +40,7 @@ registerEmployeesController.register = async (req, res) => {
                 phone,
                 email,
                 password,
-                idBranches
+                idBranches 
             }, 
             config.JWT.secret,
             {expiresIn: "15m"}
