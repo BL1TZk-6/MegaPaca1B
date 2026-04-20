@@ -41,10 +41,13 @@ loginCustomersController.login = async (req, res) => {
                 customerFound.timeOut = Date.now() + 5 * 60 * 1000;
                 customerFound.loginAttemps = 0;
 
-                await customerFound.save();
 
+                await customerFound.save();
                 return res.status(403).json({message: "Cuenta bloqueada por multiples intentos fallidos"})
             }
+
+            await customerFound.save();
+            return res.status(400).json({message: "Invalid Password"})
         }
 
         //Resetear intentos si login correcto
