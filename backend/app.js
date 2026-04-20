@@ -6,9 +6,19 @@ import customerRoutes from "./src/routes/customer.js"
 import resgisterCustomerRoutes from "./src/routes/registerCustomer.js"
 import loginCustomersRoutes from "./src/routes/login.js"
 import cookieParser from "cookie-parser";
+import logoutRoutes from "./src/routes/logout.js"
+import cors from "cors";
 
 //Creo una constante que guarde Express
 const app = express();
+
+app.use(cors({
+    origin: [ "http://localhost:5173", "http://localhost:5174" ],
+    //Permitir el envio de cookies y credenciales
+    credentials: true, 
+ }),
+);
+
 app.use(cookieParser())
 
 //Que acepte los json desde postman
@@ -19,6 +29,7 @@ app.use("/api/branches", branchesRoutes);
 app.use("/api/employees", employeesRoutes);
 app.use("/api/customers", customerRoutes);
 app.use("/api/registerCustomer", resgisterCustomerRoutes);
-app.use ("/api/login", loginCustomersRoutes);
+app.use ("/api/loginCustomers", loginCustomersRoutes);
+app.use("/api/logout", logoutRoutes);
 
 export default app;
